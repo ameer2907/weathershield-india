@@ -20,8 +20,10 @@ export default function IndiaMap({ cities, selectedCity, onCityClick, weatherDat
         🗺️ India Risk Map
         <span style={{ fontSize: 10, color: ts, fontWeight: 400 }}>— click any city</span>
       </div>
+<svg viewBox="0 0 520 460" style={{ width: "100%", height: "auto", display: "block" }}>
+  {/* Background (sea) */}
+  <rect width="520" height="460" fill={seaBg} />
 
-      <svg viewBox="0 0 400 460" style={{ width: "100%", height: "auto", display: "block" }}>
         {/* Background (sea) */}
         <rect width="400" height="460" fill={seaBg} />
 
@@ -59,9 +61,10 @@ export default function IndiaMap({ cities, selectedCity, onCityClick, weatherDat
 
         {/* City markers */}
         {cities.map(city => {
-          // Map lat/lon → SVG coordinate space
-          const svgX = ((city.lon - 68) / (97 - 68)) * 288 + 58;
-          const svgY = ((37 - city.lat) / (37 - 8)) * 395 + 22;
+       // Improved geographic projection
+const svgX = ((city.lon - 68) / (97 - 68)) * 400 + 60;
+const svgY = ((37 - city.lat) / (37 - 8)) * 395 + 22;
+;
 
           const wd  = weatherDataMap[city.name];
           const maxRisk = wd ? getMaxRiskLevel(predictDisasters(wd)) : "Low";
