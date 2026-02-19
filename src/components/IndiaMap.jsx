@@ -6,20 +6,18 @@ export default function IndiaMap({ cities, selectedCity, onCityClick, weatherDat
   const seaBg   = dark ? "#0f172a" : "#dbeafe";
   const landFg  = dark ? "#1e3a5f" : "#bbf7d0";
   const landBd  = dark ? "#334155" : "#4ade80";
-  const tc      = dark ? "#f1f5f9" : "#1e293b";
   const ts      = dark ? "#94a3b8" : "#64748b";
+  const tc      = dark ? "#f1f5f9" : "#1e293b";
 
-  // Geographic bounds of India
+  // India geographic bounds
   const MIN_LAT = 8;
   const MAX_LAT = 37;
   const MIN_LON = 68;
   const MAX_LON = 97;
 
-  // SVG size
-  const WIDTH = 600;
-  const HEIGHT = 700;
+  const WIDTH = 500;
+  const HEIGHT = 650;
 
-  // Convert latitude/longitude to SVG position
   const project = (lat, lon) => {
     const x = ((lon - MIN_LON) / (MAX_LON - MIN_LON)) * WIDTH;
     const y = ((MAX_LAT - lat) / (MAX_LAT - MIN_LAT)) * HEIGHT;
@@ -31,7 +29,7 @@ export default function IndiaMap({ cities, selectedCity, onCityClick, weatherDat
       borderRadius: 16,
       padding: 16,
       border: `1px solid ${dark ? "#334155" : "#f1f5f9"}`,
-      background: dark ? "#1e293b" : "#ffffff",
+      background: dark ? "#1e293b" : "#ffffff"
     }}>
 
       <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 12, color: tc }}>
@@ -41,25 +39,21 @@ export default function IndiaMap({ cities, selectedCity, onCityClick, weatherDat
         </span>
       </div>
 
-      <svg
-        viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
-        style={{ width: "100%", height: "auto", display: "block" }}
-      >
-        {/* Sea background */}
+      <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} style={{ width: "100%", height: "auto" }}>
         <rect width={WIDTH} height={HEIGHT} fill={seaBg} />
 
-        {/* India mainland (proper proportions) */}
+        {/* Proper India outline (correct proportions) */}
         <path
           d="
-          M220,40
-          L320,30 L420,70 L480,140
-          L500,220 L470,300 L430,360
-          L400,420 L360,480 L320,560
-          L280,640
-          L240,600 L210,520 L180,460
-          L150,420 L110,350 L80,280
-          L70,210 L90,140 L140,80
-          Z"
+          M220,20
+          L300,20 L380,50 L420,100
+          L440,180 L420,250 L380,320
+          L340,380 L300,450 L260,520
+          L230,600
+          L200,560 L170,480 L140,420
+          L100,350 L70,280 L60,200
+          L80,120 L130,60 Z
+          "
           fill={landFg}
           stroke={landBd}
           strokeWidth="2"
@@ -68,21 +62,21 @@ export default function IndiaMap({ cities, selectedCity, onCityClick, weatherDat
         {/* Northeast */}
         <path
           d="
-          M480,140
-          L560,120 L590,180 L540,220
-          L500,200 Z"
+          M440,180
+          L500,160 L530,220 L480,250 L420,230 Z
+          "
           fill={landFg}
           stroke={landBd}
           strokeWidth="2"
         />
 
         {/* Sri Lanka */}
-        <ellipse cx="300" cy="680" rx="20" ry="30" fill={landFg} stroke={landBd} />
+        <ellipse cx="260" cy="630" rx="16" ry="24" fill={landFg} stroke={landBd} />
 
         {/* Andaman */}
-        <ellipse cx="560" cy="450" rx="8" ry="25" fill={landFg} stroke={landBd} opacity="0.7" />
+        <ellipse cx="500" cy="420" rx="6" ry="22" fill={landFg} stroke={landBd} opacity="0.7" />
 
-        {/* City markers */}
+        {/* Cities */}
         {cities.map(city => {
           const { x, y } = project(city.lat, city.lon);
 
@@ -94,25 +88,22 @@ export default function IndiaMap({ cities, selectedCity, onCityClick, weatherDat
           return (
             <g key={city.name} onClick={() => onCityClick(city)} style={{ cursor: "pointer" }}>
 
-              {/* Pulse for selected city */}
               {isSelected && (
                 <circle cx={x} cy={y} r="10" fill={color} opacity="0.3">
-                  <animate attributeName="r" from="10" to="26" dur="1.5s" repeatCount="indefinite" />
+                  <animate attributeName="r" from="10" to="24" dur="1.5s" repeatCount="indefinite" />
                   <animate attributeName="opacity" from="0.3" to="0" dur="1.5s" repeatCount="indefinite" />
                 </circle>
               )}
 
-              {/* City dot */}
               <circle
                 cx={x}
                 cy={y}
-                r={isSelected ? 8 : 5}
+                r={isSelected ? 7 : 5}
                 fill={color}
-                stroke="#ffffff"
+                stroke="#fff"
                 strokeWidth="2"
               />
 
-              {/* City name */}
               {isSelected && (
                 <text
                   x={x + 10}
@@ -124,7 +115,6 @@ export default function IndiaMap({ cities, selectedCity, onCityClick, weatherDat
                   {city.name}
                 </text>
               )}
-
             </g>
           );
         })}
