@@ -23,6 +23,7 @@ export default function App() {
   const [saved,        setSaved]        = useState(['Mumbai', 'Delhi', 'Chennai']);
 
   // Preload cities for map on mount
+// Preload cities for map on mount (No default city)
 useEffect(() => {
   const map = {};
   INDIA_CITIES.slice(0, 14).forEach(c => {
@@ -30,12 +31,11 @@ useEffect(() => {
   });
   setWeatherMap(map);
 
-  // Set Chennai as default
-  const defaultCity = INDIA_CITIES.find(c => c.name === 'Chennai');
-  if (defaultCity) {
-    loadCity(defaultCity);
-  }
+  // IMPORTANT:
+  // Do NOT call loadCity() here
+  // This keeps the app in welcome state
 }, []);
+
 
   const loadCity = useCallback((city) => {
     setLoading(true);
