@@ -113,7 +113,7 @@ useEffect(() => {
     cursor: 'pointer'
   }}
 >
-  🏠 Home
+  Home
 </button>
 
         {/* Search */}
