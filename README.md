@@ -1,169 +1,151 @@
-# 🌩️ WeatherShield India
-## Disaster Intelligence & Weather Prediction Platform
+# WeatherShield India
 
-A full-stack React weather application focused on India — featuring real-time weather data, AI-powered disaster prediction, interactive maps, and emergency alerts.
+### AI-Driven Weather Monitoring & Disaster Prediction Platform
 
----
-
-## 🚀 Quick Start
-
-```bash
-# 1. Extract the ZIP and navigate into the folder
-cd weathershield-india
-
-# 2. Install dependencies
-npm install
-
-# 3. Start development server
-npm run dev
-
-# 4. Open in browser
-# → http://localhost:5173
-```
+WeatherShield India is a React-based web application designed to monitor weather conditions across Indian cities and predict potential natural disaster risks using intelligent analysis.
+The platform combines weather insights, risk detection, AI-based summaries, and visual dashboards to improve awareness and preparedness.
 
 ---
 
-## 📁 Project Structure
+## Overview
 
-```
-weathershield-india/
-├── public/
-│   └── vite.svg
-├── src/
-│   ├── components/
-│   │   ├── tabs/
-│   │   │   ├── OverviewTab.jsx     # Weather metrics + charts
-│   │   │   ├── ForecastTab.jsx     # 7-day forecast
-│   │   │   ├── DisastersTab.jsx    # Risk analysis cards
-│   │   │   ├── MapTab.jsx          # Interactive India map
-│   │   │   └── AITab.jsx           # Claude AI analysis
-│   │   ├── AlertBanner.jsx         # Active disaster alerts
-│   │   ├── AQIGauge.jsx            # Air quality gauge
-│   │   ├── ForecastCard.jsx        # Single day forecast card
-│   │   ├── IndiaMap.jsx            # SVG India map
-│   │   ├── MiniChart.jsx           # Sparkline chart
-│   │   ├── RiskCard.jsx            # Expandable risk card
-│   │   └── WeatherCard.jsx         # Metric card
-│   ├── data/
-│   │   ├── cities.js               # 25 Indian cities + emergency contacts
-│   │   └── constants.js            # Risk colors, icons, tab config
-│   ├── utils/
-│   │   ├── aiService.js            # Claude AI API integration
-│   │   ├── disasterEngine.js       # Disaster prediction algorithms
-│   │   └── weatherEngine.js        # Weather data generator
-│   ├── App.jsx                     # Main application shell
-│   ├── index.css                   # Global styles + animations
-│   └── main.jsx                    # React entry point
-├── index.html
-├── vite.config.js
-├── package.json
-└── README.md
-```
+This project demonstrates practical skills in:
+
+* React development
+* Data visualization
+* Disaster risk modeling
+* AI integration
+* Frontend system design
+
+The system helps users understand current weather conditions and identify possible environmental risks in advance.
 
 ---
 
-## 🌟 Features
+## Features
 
 ### Weather Dashboard
-- ✅ Real-time conditions: temperature, humidity, wind, pressure, rainfall, AQI, UV
-- ✅ 24-hour sparkline charts (temperature, humidity, wind, rainfall)
-- ✅ 7-day forecast with detailed table view
-- ✅ Air Quality Index (AQI) semicircular gauge
-- ✅ Dark / Light mode toggle
-- ✅ City search with state-level filtering
-- ✅ Save favourite locations (⭐)
 
-### Disaster Prediction Engine
-- 🌀 **Cyclone** — wind speed + pressure + coastal zone scoring
-- 🌊 **Flood** — rainfall intensity + humidity + regional vulnerability
-- 🌡️ **Heatwave** — temperature thresholds + arid zone factors
-- ⛈️ **Storm** — wind + pressure + rainfall combination
-- 🔴 **Earthquake** — BIS-1893 seismic zone classification
+* Real-time weather indicators:
 
-Each disaster shows: Risk Level (Low / Moderate / High / Severe), score bar, factors, and safety recommendations.
+  * Temperature
+  * Humidity
+  * Wind speed
+  * Pressure
+  * Rainfall
+  * UV Index
+  * Air Quality Index (AQI)
+* 24-hour trend charts
+* 7-day forecast view
+* City search and filtering
+* Favourite locations option
+* Dark / Light mode
+
+---
+
+### Disaster Risk Prediction
+
+The application analyzes weather patterns and estimates risk levels for:
+
+* Cyclone
+* Flood
+* Heatwave
+* Storm
+* Earthquake
+
+Each module provides:
+
+* Risk level (Low / Moderate / High / Severe)
+* Risk score
+* Contributing factors
+* Safety recommendations
+
+---
 
 ### Interactive India Map
-- SVG India map with 25 city markers
-- Color-coded by max risk level
-- Animated selection indicator
-- Multi-city risk comparison panel
 
-### AI Weather Analysis (Claude AI)
-- Expert 3-paragraph meteorological report
-- City-specific disaster risk breakdown
-- 48-hour safety outlook
-- Powered by Claude Sonnet
+* Custom SVG-based India map
+* Major city markers
+* Color-coded risk visualization
+* Quick location selection
+* Multi-city comparison
 
 ---
 
-## 🛠️ Tech Stack
+### AI Weather Analysis
 
-| Layer     | Technology              |
-|-----------|-------------------------|
-| Frontend  | React 18 + Vite         |
-| Styling   | Inline styles + CSS     |
-| Charts    | Custom SVG              |
-| Map       | Custom SVG              |
-| AI        | Claude AI (Anthropic)   |
-| Build     | Vite 5                  |
+* AI-generated weather summary
+* Location-specific disaster outlook
+* 48-hour safety insights
+* Integrated using Claude AI
 
 ---
 
-## 📡 API Integration Points
+## Tech Stack
 
-The app is pre-wired for these real APIs (currently using smart simulated data):
-
-| API | Purpose | Free Tier |
-|-----|---------|-----------|
-| [OpenWeatherMap](https://openweathermap.org/api) | Real weather data | 1000 calls/day |
-| [WeatherAPI.com](https://www.weatherapi.com/) | Forecast data | 1M calls/month |
-| [USGS Earthquake](https://earthquake.usgs.gov/fdsnws/event/1/) | Seismic events | Free |
-| [Claude AI](https://anthropic.com) | Expert analysis | Via claude.ai |
-
-To integrate real OpenWeatherMap data, update `src/utils/weatherEngine.js` to call:
-```
-https://api.openweathermap.org/data/2.5/weather?q={city}&appid={VITE_OPENWEATHER_API_KEY}
-```
+| Layer         | Technology                 |
+| ------------- | -------------------------- |
+| Frontend      | React 18 + Vite            |
+| Styling       | CSS + Inline styles        |
+| Visualization | Custom SVG charts and maps |
+| AI            | Claude (Anthropic)         |
+| Data          | Simulated (API-ready)      |
 
 ---
 
-## 🎨 Customization
-
-**Add a city:**
-```js
-// src/data/cities.js
-{ name: "Varanasi", state: "Uttar Pradesh", lat: 25.317, lon: 82.973, zone: "plains" }
-```
-
-**Adjust risk thresholds:**
-```js
-// src/utils/disasterEngine.js
-// Edit the scoring conditions in predictDisasters()
-```
-
-**Change theme colors:**
-```js
-// In any component, the `dark` prop controls all colors
-// Primary accent: #6366f1 (Indigo)
-```
-
----
-
-## 📦 Build for Production
+## Getting Started
 
 ```bash
-npm run build      # Outputs to /dist
-npm run preview    # Preview production build locally
+git clone https://github.com/yourusername/weathershield-india.git
+cd weathershield-india
+npm install
+npm run dev
+```
+
+Open the application at:
+http://localhost:5173
+
+---
+
+## API Integration (Optional)
+
+The project is ready to connect with real data sources:
+
+* OpenWeatherMap – Live weather data
+* WeatherAPI – Forecast data
+* USGS – Earthquake data
+* Claude AI – Intelligent analysis
+
+Example:
+
+```
+https://api.openweathermap.org/data/2.5/weather?q={city}&appid=YOUR_API_KEY
 ```
 
 ---
 
-## 🤝 Credits
+## Build for Production
 
-- Data: [IMD India](https://mausam.imd.gov.in) • [USGS](https://earthquake.usgs.gov) • [OpenWeatherMap](https://openweathermap.org)
-- AI: [Claude by Anthropic](https://anthropic.com)
-- Emergency: **National Emergency: 112** • **NDRF: 011-24363260**
+```bash
+npm run build
+npm run preview
+```
 
 ---
 
-*Built for portfolio showcase in Data Science, AI & Full-Stack Development*
+## Use Case
+
+* Disaster awareness dashboard
+* Smart city monitoring concept
+* Academic / portfolio project
+* Demonstration of AI + Full-Stack capabilities
+
+---
+
+## Author
+
+**Ameer Malik Bahad**
+CSE – Data Science & Artificial Intelligence
+
+---
+
+*Weather intelligence for safer and smarter cities.*
