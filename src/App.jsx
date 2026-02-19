@@ -312,10 +312,14 @@ useEffect(() => {
         {!loading && !weather && (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 400, textAlign: 'center' }}>
             <div style={{ fontSize: 72, marginBottom: 18 }}>🌏</div>
-            <h2 style={{ fontSize: 24, fontWeight: 900, color: tc, marginBottom: 8 }}>Welcome to WeatherShield India</h2>
-            <p style={{ fontSize: 14, color: ts, maxWidth: 420, marginBottom: 28, lineHeight: 1.7 }}>
-              Intelligent weather monitoring and disaster prediction across all of India. Select a city to see real-time conditions and disaster risk analysis.
-            </p>
+            <h2 style={{ fontSize: 24, fontWeight: 900, color: tc, marginBottom: 8 }}>
+  Select a City to Get Started
+</h2>
+
+           <p style={{ fontSize: 14, color: ts, maxWidth: 420, marginBottom: 28, lineHeight: 1.7 }}>
+  Choose any city in India to view real-time weather conditions, AI analysis, and disaster risk insights.
+</p>
+
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center' }}>
               {INDIA_CITIES.slice(0, 8).map(city => (
                 <button key={city.name} onClick={() => loadCity(city)}
