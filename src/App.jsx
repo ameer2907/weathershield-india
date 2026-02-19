@@ -93,6 +93,28 @@ useEffect(() => {
             <div style={{ fontSize: 9, color: ts, letterSpacing: '0.06em', textTransform: 'uppercase' }}>Disaster Intelligence Platform</div>
           </div>
         </div>
+        {/* Home Button */}
+<button
+  onClick={() => {
+    setSelectedCity(null);
+    setWeather(null);
+    setDisasters(null);
+    setQuery('');
+    setTab('overview');
+  }}
+  style={{
+    padding: '6px 14px',
+    borderRadius: 10,
+    border: `1px solid ${bd}`,
+    background: dark ? '#1e293b' : '#f1f5f9',
+    color: tc,
+    fontSize: 12,
+    fontWeight: 600,
+    cursor: 'pointer'
+  }}
+>
+  🏠 Home
+</button>
 
         {/* Search */}
         <div style={{ flex: 1, position: 'relative', maxWidth: 440 }}>
